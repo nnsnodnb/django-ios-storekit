@@ -1,10 +1,10 @@
 from django.http import HttpResponse
 from django.http.response import JsonResponse
+from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 import json
-import os
 import requests
 
 
@@ -18,7 +18,9 @@ def subscribe_receipt(request):
     response = requests.post('https://sandbox.itunes.apple.com/verifyReceipt'
                              if body['sandbox'] else 'https://buy.itunes.apple.com/verifyReceipt',
                              data=json.dumps({'receipt-data': body['receipt'],
-                                              'password': os.environ.get('PURCHASED_SECRET')})).json()
+                                              'password': settings.STOREKIT_PURCHASED_SECRET
+                                              if settings.STOREKIT_PURCHASED_SECRET != '' else ''})
+                             ).json()
     if response['status'] != 0 and response['status'] != 21006:
         return HttpResponse()
 
