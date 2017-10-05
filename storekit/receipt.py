@@ -4,7 +4,7 @@ import json
 import requests
 
 
-def subscribe_receipt(receipt: str, sandbox: bool) -> {str: int}:
+def subscribe_receipt(receipt, sandbox):
     url = 'https://sandbox.itunes.apple.com/verifyReceipt' if sandbox else 'https://buy.itunes.apple.com/verifyReceipt'
     response = requests.post(
         url=url,
