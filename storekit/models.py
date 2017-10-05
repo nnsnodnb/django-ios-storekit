@@ -8,4 +8,4 @@ class Purchase(models.Model):
     create_date = models.DateTimeField(blank=False, default=now)
 
     def __str__(self):
-        return ''
+        return str(self.id) + ': ' + str(self.expires_date)
