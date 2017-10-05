@@ -1,3 +1,11 @@
 from django.db import models
+from django.utils.timezone import now
 
-# Create your models here.
+
+class Purchase(models.Model):
+
+    expires_date = models.IntegerField(blank=False, default=0)
+    create_date = models.DateTimeField(blank=False, default=now)
+
+    def __str__(self):
+        return ''
