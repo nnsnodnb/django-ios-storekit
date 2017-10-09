@@ -2,6 +2,9 @@ certifi==2017.7.27.1
 chardet==3.0.4
 Django==1.11.5
 idna==2.6
+pyasn1==0.3.7
+pyinapp==0.1.4
 pytz==2017.2
 requests==2.18.4
+rsa==3.4.2
 urllib3==1.22
