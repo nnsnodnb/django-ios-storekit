@@ -2,10 +2,11 @@ from django.conf import settings
 from pyinapp import AppStoreValidator, InAppValidationError
 
 
-validator = AppStoreValidator(settings.STOREKIT_APP_BUNDLE_ID)
-
-
-def subscribe_receipt(receipt):
+def subscribe_receipt(receipt, sandbox):
+    validator = AppStoreValidator(
+        bundle_id=settings.STOREKIT_APP_BUNDLE_ID,
+        sandbox=sandbox
+    )
     try:
         purchases = validator.validate(receipt)
         process_purchases(purchases)
