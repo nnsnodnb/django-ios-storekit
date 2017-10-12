@@ -1,0 +1,9 @@
+[report]
+include =
+    storekit/*.py
+    tests/*.py
+omit = 
+    storekit/__init__.py
+exclude_lines =
+    if __name__ == .__main__.:
+
