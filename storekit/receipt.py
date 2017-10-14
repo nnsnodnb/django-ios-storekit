@@ -20,4 +20,4 @@ def process_purchases(purchases):
 
 def process(*purchases):
     for p in purchases:
-        """ for instance, save p to db and add a player some coins for it """
+        print(p['aaa'])
