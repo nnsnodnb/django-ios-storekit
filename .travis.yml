@@ -11,7 +11,7 @@ install:
   - pip install coverage coveralls
 branches:
   only:
-    - master
+    - travis
 script:
   - tox -r
 after_success:
