@@ -20,4 +20,4 @@ def process_purchases(purchases):
 
 def process(*purchases):
     for p in purchases:
-        print(p['aaa'])
+        pass
