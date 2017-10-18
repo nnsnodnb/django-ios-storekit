@@ -4,6 +4,8 @@ include =
     tests/*.py
 omit = 
     storekit/__init__.py
+    storekit/migrations/*.py
+    storekit/tests/compatibility.py
 exclude_lines =
     if __name__ == .__main__.:
 
