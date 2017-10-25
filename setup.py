@@ -61,6 +61,7 @@ setup(
     },
     zip_safe=True,
     install_requires=readlist('requirements.txt'),
+    dependency_links=['https://github.com/nnsnodnb/pyinapp/tarball/master#egg=package-0.1.4'],
     test_suite='runtests.run_tests',
     tests_require=readlist('requirements-test.txt')
 )
