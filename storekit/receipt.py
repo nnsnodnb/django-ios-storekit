@@ -8,16 +8,19 @@ def subscribe_receipt(receipt, sandbox):
         sandbox=sandbox
     )
     try:
-        purchases = validator.validate(receipt)
+        purchases = validator.validate(
+            receipt=receipt,
+            password=settings.STOREKIT_PURCHASED_SECRET
+        )
         process_purchases(purchases)
     except InAppValidationError:
         """ handle validation error """
 
 
 def process_purchases(purchases):
-    process(*purchases) if isinstance(purchases, list) else process(purchases)
+    process(purchases) if isinstance(purchases, list) else process(purchases)
 
 
-def process(*purchases):
+def process(purchases):
     for p in purchases:
         pass
