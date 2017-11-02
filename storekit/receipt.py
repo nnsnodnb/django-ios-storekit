@@ -13,8 +13,8 @@ def subscribe_receipt(receipt, sandbox):
             password=settings.STOREKIT_PURCHASED_SECRET
         )
         process_purchases(purchases)
-    except InAppValidationError:
-        """ handle validation error """
+    except InAppValidationError as e:
+        return e
 
 
 def process_purchases(purchases):
