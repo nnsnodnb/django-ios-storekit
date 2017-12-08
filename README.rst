@@ -16,5 +16,5 @@ nnsnodnb
 LICENSE
 -------
 
-MIT License
+Copyright (c) 2017 Yuya Oka Released under the MIT license (see `LICENSE <LICENSE>`__)
 
