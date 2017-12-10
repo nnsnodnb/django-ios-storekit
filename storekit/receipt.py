@@ -16,7 +16,7 @@ def subscribe_receipt(receipt, sandbox):
                 receipt=receipt,
                 password=settings.STOREKIT_PURCHASED_SECRET
             )
-            process_purchases(purchases)
+            _process_purchases(purchases)
             return True
 
         except InAppValidationError as e:
@@ -28,10 +28,10 @@ def subscribe_receipt(receipt, sandbox):
         pass
 
 
-def process_purchases(purchases):
-    process(purchases) if isinstance(purchases, list) else process(purchases)
+def _process_purchases(purchases):
+    _process(purchases) if isinstance(purchases, list) else _process(purchases)
 
 
-def process(purchases):
+def _process(purchases):
     for p in purchases:
         pass
