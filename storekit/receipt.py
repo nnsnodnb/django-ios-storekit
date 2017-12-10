@@ -1,20 +1,30 @@
 from django.conf import settings
 from pyinapp import AppStoreValidator, InAppValidationError
+import logging
 
 
 def subscribe_receipt(receipt, sandbox):
-    validator = AppStoreValidator(
-        bundle_id=settings.STOREKIT_APP_BUNDLE_ID,
-        sandbox=sandbox
-    )
     try:
-        purchases = validator.validate(
-            receipt=receipt,
-            password=settings.STOREKIT_PURCHASED_SECRET
+        validator = AppStoreValidator(
+            bundle_id=settings.STOREKIT_APP_BUNDLE_ID,
+            sandbox=sandbox
         )
-        process_purchases(purchases)
-    except InAppValidationError as e:
-        return e
+
+        try:
+            purchases = validator.validate(
+                receipt=receipt,
+                password=settings.STOREKIT_PURCHASED_SECRET
+            )
+            process_purchases(purchases)
+            return True
+
+        except InAppValidationError as e:
+            logging.error(e)
+            pass
+
+    except AttributeError as e:
+        logging.error(e)
+        pass
 
 
 def process_purchases(purchases):
