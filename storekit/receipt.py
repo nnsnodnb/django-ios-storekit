@@ -34,4 +34,5 @@ def _process_purchases(purchases):
 
 def _process(purchases):
     for p in purchases:
-        pass
+        purchase = Purchase.parser(p)
+        purchase.save()
