@@ -1,5 +1,6 @@
 from django.conf import settings
 from pyinapp import AppStoreValidator, InAppValidationError
+from storekit.models import InApp, Receipt, Response, Purchase
 import logging
 
 
