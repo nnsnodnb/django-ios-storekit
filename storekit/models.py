@@ -14,6 +14,12 @@ class InApp(models.Model):
     original_purchase_date_pst = models.CharField(blank=False, default='', max_length=255)
     is_trial_period = models.BooleanField(blank=False, default=False)
 
+    def __str__(self):
+        return '{}: {}'.format(self.product_id, self.quantity)
+
+    def __repr__(self):
+        return '{} <ID: {}>: "{}"'.format(self.product_id, self.id, self.__class__.__name__)
+
 
 class Receipt(models.Model):
     receipt_type = models.CharField(blank=False, default='', max_length=255)
@@ -35,11 +41,23 @@ class Receipt(models.Model):
     original_application_version = models.CharField(blank=False, default='', max_length=255)
     in_app = models.ForeignKey(InApp, blank=True)
 
+    def __str__(self):
+        return '【{}】{}: {}'.format(self.receipt_type, self.bundle_id, self.application_version)
+
+    def __repr__(self):
+        return '<ID: {}>: "{}"'.format(self.id, self.__class__.__name__)
+
 
 class Response(models.Model):
     status = models.IntegerField(blank=True)
     environment = models.CharField(blank=False, default='', max_length=255)
     receipt = models.ForeignKey(Receipt, blank=True)
+
+    def __str__(self):
+        return 'Response: ' + self.environment
+
+    def __repr__(self):
+        return '<ID: {}>: "{}"'.format(self.id, self.__class__.__name__)
 
 
 class Purchase(models.Model):
@@ -51,3 +69,6 @@ class Purchase(models.Model):
 
     def __str__(self):
         return 'Purchase: ' + str(self.transaction_id)
+
+    def __repr__(self):
+        return '{} <ID: {}>: "{}"'.format(self.product_id, self.id, self.__class__.__name__)
