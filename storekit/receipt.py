@@ -21,8 +21,13 @@ def subscribe_receipt(receipt, sandbox):
         except InAppValidationError as e:
             logging.error(e)
             pass
+        except AttributeError as e:
+            # NotFound STOREKIT_PURCHASED_SECRET
+            logging.error(e)
+            pass
 
     except AttributeError as e:
+        # NotFound STOREKIT_APP_BUNDLE_ID
         logging.error(e)
         pass
 
