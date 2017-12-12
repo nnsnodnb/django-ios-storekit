@@ -4,6 +4,28 @@ from storekit.models import Purchase
 import logging
 
 
+def normal_receipt(receipt, sandbox):
+    try:
+        validator = AppStoreValidator(
+            bundle_id=settings.AUTH_PASSWORD_VALIDATORS,
+            sandbox=sandbox
+        )
+
+        try:
+            purchases = validator.validate(
+                receipt=receipt
+            )
+            return _process(purchases)
+
+        except InAppValidationError as e:
+            logging.error(e)
+            pass
+
+    except AttributeError as e:
+        # NotFound STOREKIT_APP_BUNDLE_ID
+        logging.error(e)
+
+
 def subscribe_receipt(receipt, sandbox):
     try:
         validator = AppStoreValidator(
