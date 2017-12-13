@@ -1,0 +1,10 @@
+certifi==2017.7.27.1
+chardet==3.0.4
+Django>=1.7
+idna==2.6
+pyasn1==0.3.7
+pytz==2017.2
+requests==2.18.4
+rsa==3.4.2
+urllib3==1.22
+git+https://github.com/nnsnodnb/pyinapp.git@1f7961165c44bab6375f3840511f4a5d81072471
