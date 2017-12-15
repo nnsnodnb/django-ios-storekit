@@ -83,8 +83,7 @@ class Receipt(models.Model):
                  application_version, download_id, version_external_identifier,
                  receipt_creation_date, receipt_creation_date_ms, receipt_creation_date_pst,
                  request_date, request_date_ms, request_date_pst, original_purchase_date,
-                 original_purchase_date_ms, original_purchase_date_pst, original_application_version,
-                 in_app: InApp):
+                 original_purchase_date_ms, original_purchase_date_pst, original_application_version, in_app):
         super(Receipt, self).__init__(receipt_type, adam_id, app_item_add, bundle_id, application_version, download_id,
                                       version_external_identifier, receipt_creation_date, receipt_creation_date_ms,
                                       receipt_creation_date_pst, request_date, request_date_ms, request_date_pst,
@@ -161,7 +160,7 @@ class Purchase(models.Model):
     purchased_at = models.CharField(blank=False, default='', max_length=255)
     response = models.ForeignKey(Response, blank=True)
 
-    def __init__(self, transaction_id, product_id, quantity, purchased_at, response: Response):
+    def __init__(self, transaction_id, product_id, quantity, purchased_at, response):
         super(Purchase, self).__init__(transaction_id, product_id, quantity, purchased_at, response)
         self.transaction_id = transaction_id
         self.product_id = product_id
