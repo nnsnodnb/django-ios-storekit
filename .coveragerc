@@ -1,11 +1,11 @@
 [report]
 include =
     storekit/*.py
-    tests/*.py
 omit = 
     storekit/__init__.py
     storekit/migrations/*.py
-    storekit/tests/compatibility.py
+    storekit/tests/*.py
+    tests/*.py
 exclude_lines =
     if __name__ == .__main__.:
 
