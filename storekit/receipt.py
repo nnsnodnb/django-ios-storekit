@@ -54,7 +54,7 @@ def subscribe_receipt(receipt, sandbox):
         pass
 
 
-def _process(purchases) -> list:
+def _process(purchases):
     return list(
         map(
             lambda purchase: Purchase.parser(purchase), purchases
