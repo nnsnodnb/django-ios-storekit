@@ -1,6 +1,7 @@
 from django.conf import settings
-from pyinapp import AppStoreValidator, InAppValidationError
-from storekit.models import Purchase
+from .appstore import AppStoreValidator
+from .errors import AppValidationError
+from .models import Purchase
 import logging
 
 
@@ -17,7 +18,7 @@ def normal_receipt(receipt, sandbox):
             )
             return _process(purchases)
 
-        except InAppValidationError as e:
+        except AppValidationError as e:
             logging.error(e)
             pass
 
@@ -40,7 +41,7 @@ def subscribe_receipt(receipt, sandbox):
             )
             return _process(purchases)
 
-        except InAppValidationError as e:
+        except AppValidationError as e:
             logging.error(e)
             pass
         except AttributeError as e:

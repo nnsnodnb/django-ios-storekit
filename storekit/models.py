@@ -1,5 +1,4 @@
 from django.db import models
-from pyinapp.purchase import Purchase as LibPurchase
 
 
 class InApp(models.Model):
@@ -155,7 +154,7 @@ class Response(models.Model):
         return obj
 
 
-class Purchase(models.Model, LibPurchase):
+class Purchase(models.Model):
     transaction_id = models.IntegerField(blank=True)
     product_id = models.IntegerField(blank=True)
     quantity = models.IntegerField(blank=False, default=0)
@@ -164,7 +163,6 @@ class Purchase(models.Model, LibPurchase):
 
     def __init__(self, transaction_id, product_id, quantity, purchased_at, response: Response):
         super(Purchase, self).__init__(transaction_id, product_id, quantity, purchased_at, response)
-        super(LibPurchase, self).__init__()
         self.transaction_id = transaction_id
         self.product_id = product_id
         self.quantity = quantity
@@ -178,13 +176,13 @@ class Purchase(models.Model, LibPurchase):
         return '{} <ID: {}>: "{}"'.format(self.product_id, self.id, self.__class__.__name__)
 
     @classmethod
-    def parser(cls, json, is_save=True):
+    def parser(cls, receipt, response, is_save=True):
         purchase = {
-            'transaction_id': json['transaction_id'],
-            'product_id': json['product_id'],
-            'quantity': int(json['quantity']),
-            'purchased_at': json['purchased_at'],
-            'response': Response.parser(json['response'])
+            'transaction_id': receipt['transaction_id'],
+            'product_id': receipt['product_id'],
+            'quantity': int(receipt['quantity']),
+            'purchased_at': receipt['purchased_at'],
+            'response': Response.parser(response)
         }
         obj = cls(**purchase)
         if is_save:
