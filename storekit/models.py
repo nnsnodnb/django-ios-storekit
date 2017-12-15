@@ -91,7 +91,7 @@ class Receipt(models.Model):
                                       original_application_version, in_app)
 
     def __str__(self):
-        return '【{}】{}: {}'.format(self.receipt_type, self.bundle_id, self.application_version)
+        return '[{}] {}: {}'.format(self.receipt_type, self.bundle_id, self.application_version)
 
     def __repr__(self):
         return '<ID: {}>: "{}"'.format(self.id, self.__class__.__name__)
