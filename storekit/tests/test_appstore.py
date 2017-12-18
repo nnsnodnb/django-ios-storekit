@@ -21,6 +21,14 @@ class AppStoreTest(TestCase):
         self.response = None
         self.bundle_id = None
 
+    def test_use_sandbox(self):
+        validator = AppStoreValidator(self.bundle_id, True)
+        self.assertEqual(validator.url, 'https://sandbox.itunes.apple.com/verifyReceipt')
+
+    def test_not_use_sandbox(self):
+        validator = AppStoreValidator(self.bundle_id, False)
+        self.assertEqual(validator.url, 'https://buy.itunes.apple.com/verifyReceipt')
+
     def test_validate_success(self):
         with mock.patch('requests.post') as mock_post:
             mock_json = mock.Mock()
