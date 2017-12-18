@@ -37,18 +37,18 @@ class AppStoreValidator(object):
         except (ValueError, RequestException):
             raise AppValidationError('HTTP error')
 
-        status = api_response['status']
+        status = api_response['response']['status']
 
         if status != api_result_ok:
             error = AppValidationError(api_result_errors.get(status, 'Unknown API status'), api_response)
             raise error
 
-        receipt = api_response['receipt']
-        purchases = self._parse_receipt(receipt, api_response)
+        response = api_response['response']
+        purchases = self._parse_receipt(api_response, response)
         return purchases
 
-    def _parse_receipt(self, receipt, response):
-        if self.bundle_id != receipt['bundle_id']:
-            error = AppValidationError('Bundle id mismatch', response)
+    def _parse_receipt(self, api_response, response):
+        if self.bundle_id != response['receipt']['bundle_id']:
+            error = AppValidationError('Bundle id mismatch', api_response)
             raise error
-        return [Purchase.parser(r, response) for r in receipt['in_app']]
+        return [Purchase.parser(api_response, response, in_app) for in_app in response['receipt']['in_app']]
