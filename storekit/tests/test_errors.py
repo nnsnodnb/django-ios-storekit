@@ -3,4 +3,13 @@ from storekit.errors import AppValidationError
 
 
 class ErrorsTest(TestCase):
-    pass
+
+    def setUp(self):
+        self.error = AppValidationError(msg='')
+
+    def tearDown(self):
+        self.error = None
+
+    def test_app_validation_error(self):
+        self.error.response = {'status': 1}
+        self.assertNotEqual(self.error.response, None)

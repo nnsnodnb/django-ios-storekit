@@ -1,0 +1,44 @@
+{
+  "transaction_id": "000000000000000",
+  "product_id": "com.example.test.product_1",
+  "quantity": "1",
+  "purchased_at": "2017-12-18 00:00:00 Etc/GMT",
+  "response": {
+    "status": 0,
+    "environment": "Sandbox",
+    "receipt": {
+      "receipt_type": "ProductionSandbox",
+      "adam_id": 0,
+      "app_item_id": 0,
+      "bundle_id": "com.example.test",
+      "application_version": "1.0.0",
+      "download_id": 0,
+      "version_external_identifier": 0,
+      "receipt_creation_date": "2017-12-18 00:00:00 Etc/GMT",
+      "receipt_creation_date_ms": "0000000000000",
+      "receipt_creation_date_pst": "2017-12-16 16:00:00 America/Los_Angeles",
+      "request_date": "2017-12-18 00:00:00 Etc/GMT",
+      "request_date_ms": "0000000000000",
+      "request_date_pst": "2017-12-16 16:00:00 America/Los_Angeles",
+      "original_purchase_date": "2017-12-12 00:00:00 Etc/GMT",
+      "original_purchase_date_ms": "0000000000000",
+      "original_purchase_date_pst": "2017-12-16 16:00:00 America/Los_Angeles",
+      "original_application_version": "1.0",
+      "in_app": [
+        {
+          "quantity": "1",
+          "product_id": "com.example.test.product_1",
+          "transaction_id": "000000000000000",
+          "original_transaction_id": "000000000000000",
+          "purchase_date": "2017-12-18 00:00:00 Etc/GMT",
+          "purchase_date_ms": "0000000000000",
+          "purchase_date_pst": "2017-12-16 16:00:00 America/Los_Angeles",
+          "original_purchase_date": "2017-12-18 00:00:00 Etc/GMT",
+          "original_purchase_date_ms": "0000000000000",
+          "original_purchase_date_pst": "2017-12-16 16:00:00 America/Los_Angeles",
+          "is_trial_period": "false"
+        }
+      ]
+    }
+  }
+}

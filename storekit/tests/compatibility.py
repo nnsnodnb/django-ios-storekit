@@ -1,7 +1,7 @@
 try:
-    from unittest.mock import MagicMock, PropertyMock, patch
+    from unittest import mock
 except ImportError:
-    from mock import MagicMock, PropertyMock, patch
+    import mock
 
 
 from django.conf import settings
