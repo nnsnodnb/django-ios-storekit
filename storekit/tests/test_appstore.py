@@ -29,6 +29,14 @@ class AppStoreTest(TestCase):
         validator = AppStoreValidator(self.bundle_id, False)
         self.assertEqual(validator.url, 'https://buy.itunes.apple.com/verifyReceipt')
 
+    def test_use_password(self):
+        with mock.patch('requests.post') as mock_post:
+            mock_json = mock.Mock()
+            mock_json.json.return_value = self.response
+            mock_post.return_value = mock_json
+
+            self.assertTrue(AppStoreValidator(self.bundle_id).validate('', password='test_password'))
+
     def test_validate_success(self):
         with mock.patch('requests.post') as mock_post:
             mock_json = mock.Mock()

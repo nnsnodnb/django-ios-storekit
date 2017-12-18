@@ -32,10 +32,7 @@ class AppStoreValidator(object):
         if password:
             receipt_json['password'] = password
 
-        try:
-            api_response = requests.post(self.url, json=receipt_json).json()
-        except (ValueError, RequestException):
-            raise AppValidationError('HTTP error')
+        api_response = requests.post(self.url, json=receipt_json).json()
 
         status = api_response['response']['status']
 

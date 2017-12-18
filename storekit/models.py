@@ -2,7 +2,6 @@ from django.db import models
 
 
 class InApp(models.Model):
-    id = models.AutoField(primary_key=True)
     quantity = models.IntegerField(blank=True)
     product_id = models.CharField(blank=False, default='', max_length=255)
     transaction_id = models.IntegerField(blank=True)
@@ -18,10 +17,7 @@ class InApp(models.Model):
     def __init__(self, quantity, product_id, transaction_id, original_transaction_id,
                  purchase_date, purchase_date_ms, purchase_date_pst, original_purchase_date,
                  original_purchase_date_ms, original_purchase_date_pst, is_trial_period):
-        super(InApp, self).__init__(quantity, product_id, transaction_id, original_transaction_id, purchase_date,
-                                    purchase_date_ms, purchase_date_pst, original_purchase_date,
-                                    original_purchase_date_ms, original_purchase_date_pst, is_trial_period)
-        self.id = InApp.objects.all().last().id if InApp.objects.all().last() is not None else 0
+        models.Model.__init__(self)
         self.quantity = quantity
         self.product_id = product_id
         self.transaction_id = transaction_id
@@ -62,7 +58,6 @@ class InApp(models.Model):
 
 
 class Receipt(models.Model):
-    id = models.AutoField(primary_key=True)
     receipt_type = models.CharField(blank=False, default='', max_length=255)
     adam_id = models.IntegerField(blank=True)
     app_item_id = models.IntegerField(blank=True)
@@ -87,12 +82,7 @@ class Receipt(models.Model):
                  receipt_creation_date, receipt_creation_date_ms, receipt_creation_date_pst,
                  request_date, request_date_ms, request_date_pst, original_purchase_date,
                  original_purchase_date_ms, original_purchase_date_pst, original_application_version, in_app):
-        super(Receipt, self).__init__(receipt_type, adam_id, app_item_id, bundle_id, application_version, download_id,
-                                      version_external_identifier, receipt_creation_date, receipt_creation_date_ms,
-                                      receipt_creation_date_pst, request_date, request_date_ms, request_date_pst,
-                                      original_purchase_date, original_purchase_date_ms, original_purchase_date_pst,
-                                      original_application_version, in_app)
-        self.id = Receipt.objects.all().last().id if Receipt.objects.all().last() is not None else 0
+        models.Model.__init__(self)
         self.receipt_type = receipt_type
         self.adam_id = adam_id
         self.app_item_id = app_item_id
@@ -147,14 +137,12 @@ class Receipt(models.Model):
 
 
 class Response(models.Model):
-    id = models.AutoField(primary_key=True)
     status = models.IntegerField(blank=True)
     environment = models.CharField(blank=False, default='', max_length=255)
     receipt = models.ForeignKey(Receipt, blank=True)
 
     def __init__(self, status, environment, receipt):
-        super(Response, self).__init__(status, environment, receipt)
-        self.id = Response.objects.all().last().id if Response.objects.all().last() is not None else 0
+        models.Model.__init__(self)
         self.status = status
         self.environment = environment
         self.receipt = receipt
@@ -179,7 +167,6 @@ class Response(models.Model):
 
 
 class Purchase(models.Model):
-    id = models.AutoField(primary_key=True)
     transaction_id = models.IntegerField(blank=True)
     product_id = models.CharField(blank=False, default='', max_length=255)
     quantity = models.IntegerField(blank=False, default=0)
@@ -187,8 +174,7 @@ class Purchase(models.Model):
     response = models.ForeignKey(Response, blank=True)
 
     def __init__(self, transaction_id, product_id, quantity, purchased_at, response):
-        super(Purchase, self).__init__(transaction_id, product_id, quantity, purchased_at, response)
-        self.id = Purchase.objects.all().last().id if Purchase.objects.all().last() is not None else 0
+        models.Model.__init__(self)
         self.transaction_id = transaction_id
         self.product_id = product_id
         self.quantity = quantity
