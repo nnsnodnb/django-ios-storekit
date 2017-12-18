@@ -46,3 +46,13 @@ class AppStoreTest(TestCase):
 
             with self.assertRaises(AppValidationError):
                 _ = AppStoreValidator(self.bundle_id).validate('')
+
+    def test_mismatch_bundle_id(self):
+        self.bundle_id = 'com.example.wrong'
+        with mock.patch('requests.post') as mock_post:
+            mock_json = mock.Mock()
+            mock_json.json.return_value = self.response
+            mock_post.return_value = mock_json
+
+            with self.assertRaises(AppValidationError):
+                _ = AppStoreValidator(self.bundle_id).validate('')
