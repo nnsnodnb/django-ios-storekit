@@ -85,3 +85,46 @@ class ReceiptTest(TestCase):
         )
         self.assertEqual(repr(receipt),
                          '<ID: {}>: "{}"'.format(receipt.id, receipt.__class__.__name__))
+
+
+class ResponseTest(TestCase):
+
+    def setUp(self):
+        with open(JSON_FILE_PATH, 'r') as f:
+            self.response = json.loads(f.read())['response']
+            self.in_app = self.response['receipt']['in_app'][0]
+
+    def tearDown(self):
+        self.response = None
+        self.in_app = None
+
+    def test_new_data_save_true(self):
+        response = Response.parser(
+            self.response,
+            in_app=self.in_app
+        )
+        self.assertTrue(response)
+
+    def test_new_data_save_false(self):
+        response = Response.parser(
+            self.response,
+            in_app=self.in_app,
+            is_save=False
+        )
+        self.assertTrue(response)
+
+    def test_str(self):
+        response = Response.parser(
+            self.response,
+            in_app=self.in_app
+        )
+        self.assertEqual(str(response),
+                         'Response: ' + response.environment)
+
+    def test_repr(self):
+        response = Response.parser(
+            self.response,
+            in_app=self.in_app
+        )
+        self.assertEqual(repr(response),
+                         '<ID: {}>: "{}"'.format(response.id, response.__class__.__name__))
