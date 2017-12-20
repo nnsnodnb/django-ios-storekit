@@ -128,3 +128,51 @@ class ResponseTest(TestCase):
         )
         self.assertEqual(repr(response),
                          '<ID: {}>: "{}"'.format(response.id, response.__class__.__name__))
+
+
+class PurchaseTest(TestCase):
+
+    def setUp(self):
+        with open(JSON_FILE_PATH, 'r') as f:
+            self.receipt = json.loads(f.read())
+            self.response = self.receipt['response']
+            self.in_app = self.response['receipt']['in_app'][0]
+
+    def tearDown(self):
+        self.response = None
+        self.in_app = None
+
+    def test_new_data_save_true(self):
+        purchase = Purchase.parser(
+            self.receipt,
+            self.response,
+            in_app=self.in_app
+        )
+        self.assertTrue(purchase)
+
+    def test_new_data_save_false(self):
+        purchase = Purchase.parser(
+            self.receipt,
+            self.response,
+            in_app=self.in_app,
+            is_save=False
+        )
+        self.assertTrue(purchase)
+
+    def test_str(self):
+        purchase = Purchase.parser(
+            self.receipt,
+            self.response,
+            in_app=self.in_app
+        )
+        self.assertEqual(str(purchase),
+                         'Purchase: ' + str(purchase.transaction_id))
+
+    def test_repr(self):
+        purchase = Purchase.parser(
+            self.receipt,
+            self.response,
+            in_app=self.in_app
+        )
+        self.assertEqual(repr(purchase),
+                         '{} <ID: {}>: "{}"'.format(purchase.product_id, purchase.id, purchase.__class__.__name__))
