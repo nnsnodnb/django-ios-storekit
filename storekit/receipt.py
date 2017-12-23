@@ -8,19 +8,18 @@ import logging
 def normal_receipt(receipt, sandbox):
     try:
         validator = AppStoreValidator(
-            bundle_id=settings.AUTH_PASSWORD_VALIDATORS,
+            bundle_id=settings.STOREKIT_APP_BUNDLE_ID,
             sandbox=sandbox
         )
 
         try:
-            purchases = validator.validate(
+            return validator.validate(
                 receipt=receipt
             )
-            return _process(purchases)
 
         except AppValidationError as e:
             logging.error(e)
-            pass
+            raise
 
     except AttributeError as e:
         # NotFound STOREKIT_APP_BUNDLE_ID
@@ -35,11 +34,10 @@ def subscribe_receipt(receipt, sandbox):
         )
 
         try:
-            purchases = validator.validate(
+            return validator.validate(
                 receipt=receipt,
                 password=settings.STOREKIT_PURCHASED_SECRET
             )
-            return _process(purchases)
 
         except AppValidationError as e:
             logging.error(e)
@@ -53,11 +51,3 @@ def subscribe_receipt(receipt, sandbox):
         # NotFound STOREKIT_APP_BUNDLE_ID
         logging.error(e)
         pass
-
-
-def _process(purchases):
-    return list(
-        map(
-            lambda purchase: Purchase.parser(purchase), purchases
-        )
-    )

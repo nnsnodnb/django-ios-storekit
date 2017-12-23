@@ -79,3 +79,5 @@ TEST_RUNNER = 'storekit.tests.compatibility.TestRunner'
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
+STOREKIT_PURCHASED_SECRET = 'storekit_purchased_secret'
+STOREKIT_APP_BUNDLE_ID = 'com.example.test'
