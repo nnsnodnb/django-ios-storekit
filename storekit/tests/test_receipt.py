@@ -45,7 +45,12 @@ class NormalReceiptTest(TestCase):
 class SubscribeReceiptTest(TestCase):
 
     def setUp(self):
-        pass
+        with open(JSON_FILE_PATH, 'r') as f:
+            self.response = json.loads(f.read())
+        self.bundle_id = settings.STOREKIT_APP_BUNDLE_ID
+        self.sandbox = False
 
     def tearDown(self):
-        pass
+        self.response = None
+        self.bundle_id = None
+        self.sandbox = None
