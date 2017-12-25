@@ -45,7 +45,30 @@ class NormalReceiptTest(TestCase):
 class SubscribeReceiptTest(TestCase):
 
     def setUp(self):
-        pass
+        with open(JSON_FILE_PATH, 'r') as f:
+            self.response = json.loads(f.read())
+        self.bundle_id = settings.STOREKIT_APP_BUNDLE_ID
+        self.sandbox = False
 
     def tearDown(self):
-        pass
+        self.response = None
+        self.bundle_id = None
+        self.sandbox = None
+
+    def test_success(self):
+        with mock.patch('requests.post') as mock_post:
+            mock_json = mock.Mock()
+            mock_json.json.return_value = self.response
+            mock_post.return_value = mock_json
+
+            self.assertTrue(subscribe_receipt(receipt='', sandbox=self.sandbox))
+
+    def test_failure_status_code(self):
+        self.response['response']['status'] = 1
+        with mock.patch('requests.post') as mock_post:
+            mock_json = mock.Mock()
+            mock_json.json.return_value = self.response
+            mock_post.return_value = mock_json
+
+            with self.assertRaises(AppValidationError):
+                subscribe_receipt(receipt='', sandbox=self.sandbox)
