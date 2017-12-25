@@ -24,6 +24,7 @@ def normal_receipt(receipt, sandbox):
     except AttributeError as e:
         # NotFound STOREKIT_APP_BUNDLE_ID
         logging.error(e)
+        raise
 
 
 def subscribe_receipt(receipt, sandbox):
@@ -41,13 +42,14 @@ def subscribe_receipt(receipt, sandbox):
 
         except AppValidationError as e:
             logging.error(e)
-            pass
+            raise
+
         except AttributeError as e:
             # NotFound STOREKIT_PURCHASED_SECRET
             logging.error(e)
-            pass
+            raise
 
     except AttributeError as e:
         # NotFound STOREKIT_APP_BUNDLE_ID
         logging.error(e)
-        pass
+        raise
