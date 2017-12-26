@@ -8,6 +8,31 @@ django-ios-storekit
 
 A Django plugin for iOS StoreKit server.
 
+Supported python versions
+-------------------------
+
+2.7, 3.4, 3.5, 3.6
+
+Supported django versions
+-------------------------
+
+1.7 - 1.11
+
+Installation
+------------
+
+.. code:: bash
+
+    $ pip install django-ios-storekit
+
+Add ``storekit`` into `INSTALLED_APPS` in ``settings.py`` file.
+
+.. code:: python
+
+    INSTALLED_APPS += (
+        'storekit',
+    )
+
 Author
 ------
 
