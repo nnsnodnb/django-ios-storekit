@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 import sys
 
 NAME = 'django-ios-storekit'
-VERSION = '0.0.1'
+VERSION = '1.0.0'
 
 
 def read(filename):
