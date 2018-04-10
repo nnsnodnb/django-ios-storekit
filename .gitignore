@@ -10,6 +10,7 @@ local_settings.py
 db.sqlite3
 media
 manage.py
+!example/manage.py
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
@@ -156,7 +157,6 @@ pyvenv.cfg
 pip-selfcheck.json
 
 django_ios_storekit
-manage.py
 
 ### PyCharm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
