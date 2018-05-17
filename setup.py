@@ -1,10 +1,9 @@
 # codeing: utf-8
 from setuptools import setup, find_packages
 
-import sys
 
 NAME = 'django-ios-storekit'
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 
 def read(filename):
@@ -26,7 +25,7 @@ setup(
     version=VERSION,
     description='A Django plugin for iOS In-App Purchases.',
     long_description=read('README.rst'),
-    classifiers= [
+    classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
@@ -38,7 +37,6 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development :: Libraries :: Application Frameworks',
         'Topic :: Software Development :: Libraries :: Python Modules'
@@ -63,4 +61,3 @@ setup(
     test_suite='runtests.run_tests',
     tests_require=readlist('requirements-test.txt')
 )
-
