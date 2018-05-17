@@ -75,7 +75,7 @@ class Receipt(models.Model):
     original_purchase_date_ms = models.IntegerField(blank=True)
     original_purchase_date_pst = models.CharField(blank=False, default='', max_length=255)
     original_application_version = models.CharField(blank=False, default='', max_length=255)
-    in_app = models.ForeignKey(InApp, blank=True)
+    in_app = models.ForeignKey(InApp, blank=True, on_delete=models.CASCADE)
 
     def __init__(self, receipt_type, adam_id, app_item_id, bundle_id,
                  application_version, download_id, version_external_identifier,
@@ -139,7 +139,7 @@ class Receipt(models.Model):
 class Response(models.Model):
     status = models.IntegerField(blank=True)
     environment = models.CharField(blank=False, default='', max_length=255)
-    receipt = models.ForeignKey(Receipt, blank=True)
+    receipt = models.ForeignKey(Receipt, blank=True, on_delete=models.CASCADE)
 
     def __init__(self, status, environment, receipt):
         models.Model.__init__(self)
@@ -171,7 +171,7 @@ class Purchase(models.Model):
     product_id = models.CharField(blank=False, default='', max_length=255)
     quantity = models.IntegerField(blank=False, default=0)
     purchased_at = models.CharField(blank=False, default='', max_length=255)
-    response = models.ForeignKey(Response, blank=True)
+    response = models.ForeignKey(Response, blank=True, on_delete=models.CASCADE)
 
     def __init__(self, transaction_id, product_id, quantity, purchased_at, response):
         models.Model.__init__(self)
