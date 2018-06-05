@@ -1,54 +1,40 @@
 from django.conf import settings
 from .appstore import AppStoreValidator
-from .errors import AppValidationError
-import logging
 
 
 def normal_receipt(receipt, sandbox):
     try:
-        validator = AppStoreValidator(
-            bundle_id=settings.STOREKIT_APP_BUNDLE_ID,
-            sandbox=sandbox
-        )
+        storekit_bundle_id = settings.STOREKIT_APP_BUNDLE_ID
+    except AttributeError:
+        raise AttributeError('Please set "STOREKIT_APP_BUNDLE_ID" in your settings.py')
 
-        try:
-            return validator.validate(
-                receipt=receipt
-            )
+    validator = AppStoreValidator(
+        bundle_id=storekit_bundle_id,
+        sandbox=sandbox
+    )
 
-        except AppValidationError as e:
-            logging.error(e)
-            raise
-
-    except AttributeError as e:
-        # NotFound STOREKIT_APP_BUNDLE_ID
-        logging.error(e)
-        raise
+    return validator.validate(
+        receipt=receipt
+    )
 
 
 def subscribe_receipt(receipt, sandbox):
     try:
-        validator = AppStoreValidator(
-            bundle_id=settings.STOREKIT_APP_BUNDLE_ID,
-            sandbox=sandbox
-        )
+        storekit_app_bundle_id = settings.STOREKIT_APP_BUNDLE_ID
+    except AttributeError:
+        raise AttributeError('Please set "STOREKIT_APP_BUNDLE_ID" in your settings.py')
 
-        try:
-            return validator.validate(
-                receipt=receipt,
-                password=settings.STOREKIT_PURCHASED_SECRET
-            )
+    try:
+        storekit_purchased_secret = settings.STOREKIT_PURCHASED_SECRET
+    except AttributeError:
+        raise AttributeError('Please set "STOREKIT_PURCHASED_SECRET" in your settings.py')
 
-        except AppValidationError as e:
-            logging.error(e)
-            raise
+    validator = AppStoreValidator(
+        bundle_id=storekit_app_bundle_id,
+        sandbox=sandbox
+    )
 
-        except AttributeError as e:
-            # NotFound STOREKIT_PURCHASED_SECRET
-            logging.error(e)
-            raise
-
-    except AttributeError as e:
-        # NotFound STOREKIT_APP_BUNDLE_ID
-        logging.error(e)
-        raise
+    return validator.validate(
+        receipt=receipt,
+        password=storekit_purchased_secret
+    )

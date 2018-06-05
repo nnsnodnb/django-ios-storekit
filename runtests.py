@@ -16,7 +16,7 @@ def run_tests(base_dir=None, apps=None, verbosity=1, interavtive=False):
     sys.path.insert(0, os.path.join(base_dir, 'tests'))
 
     import django
-    if django.VERSION >= (1,7):
+    if django.VERSION >= (1, 7):
         django.setup()
 
     from django.conf import settings
