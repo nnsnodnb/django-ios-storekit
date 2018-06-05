@@ -46,7 +46,7 @@ class AppStoreTest(TestCase):
             self.assertTrue(AppStoreValidator(self.bundle_id).validate(''))
 
     def test_validate_status_error(self):
-        self.response['response']['status'] = 1
+        self.response['status'] = 1
         with mock.patch('requests.post') as mock_post:
             mock_json = mock.Mock()
             mock_json.json.return_value = self.response

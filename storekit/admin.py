@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import InApp, Receipt, Response, Purchase
+from .models import InApp, Receipt, Response
 
 
 class InAppAdmin(admin.ModelAdmin):
@@ -36,11 +36,3 @@ class ResponseAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Response, ResponseAdmin)
-
-
-class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ('transaction_id', 'product_id', 'quantity', 'purchased_at', 'response')
-    list_display_links = ('transaction_id', 'product_id', 'quantity', 'purchased_at', 'response')
-
-
-admin.site.register(Purchase, PurchaseAdmin)

@@ -1,7 +1,6 @@
 from django.conf import settings
 from .appstore import AppStoreValidator
 from .errors import AppValidationError
-from .models import Purchase
 import logging
 
 

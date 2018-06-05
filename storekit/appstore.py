@@ -1,6 +1,5 @@
-from requests.exceptions import RequestException
 from .errors import AppValidationError
-from .models import Purchase
+from .models import Response
 import requests
 
 
@@ -40,12 +39,10 @@ class AppStoreValidator(object):
             error = AppValidationError(api_result_errors.get(status, 'Unknown API status'), api_response)
             raise error
 
-        response = api_response['response']
-        purchases = self._parse_receipt(api_response, response)
+        purchases = self._parse_receipt(api_response)
         return purchases
 
-    def _parse_receipt(self, api_response, response):
-        if self.bundle_id != response['receipt']['bundle_id']:
-            error = AppValidationError('Bundle id mismatch', api_response)
-            raise error
-        return [Purchase.parser(api_response, response, in_app) for in_app in response['receipt']['in_app']]
+    def _parse_receipt(self, api_response):
+        if self.bundle_id != api_response['receipt']['bundle_id']:
+            raise AppValidationError('Bundle ID mismatch', api_response)
+        return [Response.parser(api_response, in_app) for in_app in api_response['receipt']['in_app']]

@@ -32,7 +32,7 @@ class NormalReceiptTest(TestCase):
             self.assertTrue(normal_receipt(receipt='', sandbox=self.sandbox))
 
     def test_failure_status_code(self):
-        self.response['response']['status'] = 1
+        self.response['status'] = 1
         with mock.patch('requests.post') as mock_post:
             mock_json = mock.Mock()
             mock_json.json.return_value = self.response
@@ -64,7 +64,7 @@ class SubscribeReceiptTest(TestCase):
             self.assertTrue(subscribe_receipt(receipt='', sandbox=self.sandbox))
 
     def test_failure_status_code(self):
-        self.response['response']['status'] = 1
+        self.response['status'] = 1
         with mock.patch('requests.post') as mock_post:
             mock_json = mock.Mock()
             mock_json.json.return_value = self.response

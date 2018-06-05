@@ -164,39 +164,3 @@ class Response(models.Model):
         if is_save:
             obj.save()
         return obj
-
-
-class Purchase(models.Model):
-    transaction_id = models.IntegerField(blank=True)
-    product_id = models.CharField(blank=False, default='', max_length=255)
-    quantity = models.IntegerField(blank=False, default=0)
-    purchased_at = models.CharField(blank=False, default='', max_length=255)
-    response = models.ForeignKey(Response, blank=True, on_delete=models.CASCADE)
-
-    def __init__(self, transaction_id, product_id, quantity, purchased_at, response):
-        models.Model.__init__(self)
-        self.transaction_id = transaction_id
-        self.product_id = product_id
-        self.quantity = quantity
-        self.purchased_at = purchased_at
-        self.response = response
-
-    def __str__(self):
-        return 'Purchase: ' + str(self.transaction_id)
-
-    def __repr__(self):
-        return '{} <ID: {}>: "{}"'.format(self.product_id, self.id, self.__class__.__name__)
-
-    @classmethod
-    def parser(cls, receipt, response, in_app, is_save=True):
-        purchase = {
-            'transaction_id': receipt['transaction_id'],
-            'product_id': receipt['product_id'],
-            'quantity': int(receipt['quantity']),
-            'purchased_at': receipt['purchased_at'],
-            'response': Response.parser(response, in_app)
-        }
-        obj = cls(**purchase)
-        if is_save:
-            obj.save()
-        return obj
