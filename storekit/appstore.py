@@ -34,7 +34,7 @@ class AppStoreValidator(object):
 
         api_response = requests.post(self.url, json=receipt_json).json()
 
-        status = api_response['response']['status']
+        status = api_response['status']
 
         if status != api_result_ok:
             error = AppValidationError(api_result_errors.get(status, 'Unknown API status'), api_response)
