@@ -1,6 +1,7 @@
 include README.rst
 include LICENSE
 include requirements.txt
+include requirements-test.txt
 include MANIFEST.in
 global-exclude __pycache__
 global-exclude *.py[co]
