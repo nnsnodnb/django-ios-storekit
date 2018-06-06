@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.test.utils import override_settings
 from unittest import TestCase
 from storekit.errors import AppValidationError
 from storekit.receipt import normal_receipt, subscribe_receipt
@@ -41,6 +42,12 @@ class NormalReceiptTest(TestCase):
             with self.assertRaises(AppValidationError):
                 normal_receipt(receipt='', sandbox=self.sandbox)
 
+    @override_settings()
+    def test_raise_attribute_error(self):
+        del settings.STOREKIT_APP_BUNDLE_ID
+        with self.assertRaises(AttributeError):
+            normal_receipt(receipt='', sandbox=self.sandbox)
+
 
 class SubscribeReceiptTest(TestCase):
 
@@ -72,3 +79,15 @@ class SubscribeReceiptTest(TestCase):
 
             with self.assertRaises(AppValidationError):
                 subscribe_receipt(receipt='', sandbox=self.sandbox)
+
+    @override_settings()
+    def test_raise_attribute_error_for_app_bundle_id(self):
+        del settings.STOREKIT_APP_BUNDLE_ID
+        with self.assertRaises(AttributeError):
+            subscribe_receipt(receipt='', sandbox=self.sandbox)
+
+    @override_settings()
+    def test_raise_attribute_error_for_purchased_secret(self):
+        del settings.STOREKIT_PURCHASED_SECRET
+        with self.assertRaises(AttributeError):
+            subscribe_receipt(receipt='', sandbox=self.sandbox)
