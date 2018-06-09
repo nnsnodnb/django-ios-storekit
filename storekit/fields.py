@@ -1,10 +1,14 @@
 from django.db.models import BigIntegerField
 from django.db.models.fields import PositiveIntegerRelDbTypeMixin
+from django.utils.translation import gettext_lazy as _
 
 
 class PositiveBigIntegerField(PositiveIntegerRelDbTypeMixin, BigIntegerField):
 
-    description = 'Big (8 byte) positive integer'
+    description = _('Big (8 byte) positive integer')
+
+    def db_type(self, connection):
+        return 'bigint UNSIGNED'
 
     def get_internal_type(self):
         return 'PositiveSmallIntegerField'

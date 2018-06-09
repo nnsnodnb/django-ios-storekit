@@ -5,8 +5,8 @@ from .fields import PositiveBigIntegerField
 class InApp(models.Model):
     quantity = models.IntegerField(blank=True)
     product_id = models.CharField(blank=False, default='', max_length=255)
-    transaction_id = models.IntegerField(blank=True)
-    original_transaction_id = models.IntegerField(blank=True)
+    transaction_id = PositiveBigIntegerField(blank=True)
+    original_transaction_id = PositiveBigIntegerField(blank=True)
     purchase_date = models.CharField(blank=False, default='', max_length=255)
     purchase_date_ms = models.IntegerField(blank=True)
     purchase_date_pst = models.CharField(blank=False, default='', max_length=255)
