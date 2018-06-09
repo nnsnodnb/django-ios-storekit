@@ -1,4 +1,5 @@
-from django.db.models.fields import BigIntegerField, PositiveIntegerRelDbTypeMixin
+from django.db.models import BigIntegerField
+from django.db.models.fields import PositiveIntegerRelDbTypeMixin
 
 
 class PositiveBigIntegerField(PositiveIntegerRelDbTypeMixin, BigIntegerField):
