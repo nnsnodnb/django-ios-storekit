@@ -1,10 +1,10 @@
 from django.db.models import BigIntegerField
-from django.db.models.fields import PositiveIntegerRelDbTypeMixin
 from django.utils.translation import gettext_lazy as _
 
 
-class PositiveBigIntegerField(PositiveIntegerRelDbTypeMixin, BigIntegerField):
+class PositiveBigIntegerField(BigIntegerField):
 
+    empty_strings_allowed = False
     description = _('Big (8 byte) positive integer')
 
     def db_type(self, connection):
