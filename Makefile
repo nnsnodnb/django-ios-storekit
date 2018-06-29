@@ -8,4 +8,11 @@ publish:
 	@ pip install twine
 	@ twine upload dist/*
 	@ pip uninstall twine -y
-	@ rm -rf ./upload ./dist
+	@ rm -rf ./dist
+
+test_publish:
+	@ python setup.py sdist bdist_wheel
+	@ pip install twine
+	@ twine upload --repository=pypitest dist/*
+	@ pip uninstall twine -y
+	@ rm -rf ./dist
