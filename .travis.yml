@@ -9,9 +9,6 @@ install:
   - pip install tox-travis
   - pip install tox>=1.8
   - pip install coverage coveralls
-branches:
-  only:
-    - travis
 script:
   - tox -r
 after_success:
