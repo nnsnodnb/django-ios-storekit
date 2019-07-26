@@ -5,18 +5,26 @@ django-ios-storekit
     :target: https://travis-ci.org/nnsnodnb/django-ios-storekit
 .. image:: https://coveralls.io/repos/github/nnsnodnb/django-ios-storekit/badge.svg?branch=travis
     :target: https://coveralls.io/github/nnsnodnb/django-ios-storekit?branch=travis
+.. image:: https://img.shields.io/pypi/pyversions/django-ios-storekit
+    :alt: PyPI - Python Version
+.. image:: https://img.shields.io/pypi/v/django-ios-storekit
+    :alt: PyPI
+.. image:: https://img.shields.io/pypi/format/django-ios-storekit
+    :alt: PyPI - Format
+.. image:: https://img.shields.io/pypi/wheel/django-ios-storekit
+    :alt: PyPI - Wheel
 
 A Django plugin for iOS StoreKit server.
 
 Supported python versions
 -------------------------
 
-2.7, 3.4, 3.5, 3.6
+3.5.x ~ 3.7.x
 
 Supported django versions
 -------------------------
 
-1.7 - 1.11, 2.0(only Python3.4 or later)
+2.0.x ~ 2.2.x
 
 Installation
 ------------
@@ -32,6 +40,10 @@ Add ``storekit`` into `INSTALLED_APPS` in ``settings.py`` file.
     INSTALLED_APPS += (
         'storekit',
     )
+
+.. code:: bash
+
+    $ python manage.py migrate
 
 Author
 ------
