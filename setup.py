@@ -16,7 +16,8 @@ def readlist(filename):
 
 
 setup(
-    long_description=read('README.rst'),
+    long_description=read('README.md'),
+    long_description_content_type='text/markdown',
     download_url='https://github.com/nnsnodnb/django-ios-storekit/tarball/master',
     include_package_data=True,
     package_data={
