@@ -6,13 +6,9 @@ django-ios-storekit
 .. image:: https://coveralls.io/repos/github/nnsnodnb/django-ios-storekit/badge.svg?branch=travis
     :target: https://coveralls.io/github/nnsnodnb/django-ios-storekit?branch=travis
 .. image:: https://img.shields.io/pypi/pyversions/django-ios-storekit
-    :alt: PyPI - Python Version
 .. image:: https://img.shields.io/pypi/v/django-ios-storekit
-    :alt: PyPI
 .. image:: https://img.shields.io/pypi/format/django-ios-storekit
-    :alt: PyPI - Format
 .. image:: https://img.shields.io/pypi/wheel/django-ios-storekit
-    :alt: PyPI - Wheel
 
 A Django plugin for iOS StoreKit server.
 
