@@ -26,6 +26,9 @@ class ReceiptAdmin(admin.ModelAdmin):
         'version_external_identifier', 'receipt_creation_date', 'request_date', 'original_purchase_date', 'in_app'
     )
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('in_app')
+
 
 admin.site.register(Receipt, ReceiptAdmin)
 
@@ -33,6 +36,9 @@ admin.site.register(Receipt, ReceiptAdmin)
 class ResponseAdmin(admin.ModelAdmin):
     list_display = ('status', 'environment', 'receipt')
     list_display_links = ('status', 'environment', 'receipt')
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_realated('receipt')
 
 
 admin.site.register(Response, ResponseAdmin)
