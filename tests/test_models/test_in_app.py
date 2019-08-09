@@ -20,11 +20,11 @@ def test_new_data_save_false(first_in_app):
 def test_str(first_in_app):
     in_app = InApp.parser(first_in_app)
 
-    assert str(in_app) == f'{in_app.product_id}: {in_app.quantity}'
+    assert str(in_app) == '{}: {}'.format(in_app.product_id, in_app.quantity)
 
 
 @pytest.mark.django_db
 def test_repr(first_in_app):
     in_app = InApp.parser(first_in_app)
 
-    assert repr(in_app) == f'{in_app.product_id} <ID: {in_app.id}>: "{in_app.__class__.__name__}"'
+    assert repr(in_app) == '{} <ID: {}>: "{}"'.format(in_app.product_id, in_app.id, in_app.__class__.__name__)
