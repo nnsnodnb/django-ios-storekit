@@ -1,10 +1,2 @@
-certifi==2019.6.16
-chardet==3.0.4
-Django>=1.7,<2.1
-idna==2.8
-pyasn1==0.3.7
-pyasn1==0.3.7
-pytz==2017.2
-requests==2.22.0
-rsa==4.0
-urllib3==1.25.3
+Django>=2.0,<=2.2
+requests>=2.22
