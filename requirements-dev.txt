@@ -1,2 +1,0 @@
--r requirements.txt
-git+https://github.com/nnsnodnb/pyinapp.git@fe991fabaa807988bc59e4a289c0c78313686cfd
