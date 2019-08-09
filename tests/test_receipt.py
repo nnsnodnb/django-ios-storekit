@@ -1,17 +1,15 @@
 from django.conf import settings
 from django.test.utils import override_settings
-from unittest import TestCase
+from pathlib import Path
 from storekit.errors import AppValidationError
 from storekit.receipt import normal_receipt, subscribe_receipt
-from storekit.tests.compatibility import mock
 
 import json
-import os.path
-
-JSON_FILE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'response.json')
+import pytest
 
 
-class NormalReceiptTest(TestCase):
+"""
+class TestNormalReceipt:
 
     def setUp(self):
         with open(JSON_FILE_PATH, 'r') as f:
@@ -49,7 +47,7 @@ class NormalReceiptTest(TestCase):
             normal_receipt(receipt='', sandbox=self.sandbox)
 
 
-class SubscribeReceiptTest(TestCase):
+class TestSubscribeReceipt:
 
     def setUp(self):
         with open(JSON_FILE_PATH, 'r') as f:
@@ -91,3 +89,4 @@ class SubscribeReceiptTest(TestCase):
         del settings.STOREKIT_PURCHASED_SECRET
         with self.assertRaises(AttributeError):
             subscribe_receipt(receipt='', sandbox=self.sandbox)
+"""
