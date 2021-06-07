@@ -53,9 +53,8 @@ jobs:
       shell: bash
       run: python -m poetry run python -m flake8 .
 
-    #- name: Lint with isort
-    #  shell: bash
-    #  run: python -m poetry run python -m isort --check .
+    - name: Lint with isort
+      run: python -m poetry run python -m isort --check .
 
     - name: Lint with black
       run: python -m poetry run python -m black --check .
