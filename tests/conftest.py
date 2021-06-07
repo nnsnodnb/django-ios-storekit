@@ -1,7 +1,8 @@
-from .testing import JSON_FILE_PATH
-
 import json
+
 import pytest
+
+from .testing import JSON_FILE_PATH
 
 
 @pytest.fixture(scope="class")

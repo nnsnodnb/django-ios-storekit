@@ -1,6 +1,6 @@
-from storekit.models import Receipt
-
 import pytest
+
+from storekit.models import Receipt
 
 
 @pytest.mark.django_db

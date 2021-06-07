@@ -1,6 +1,6 @@
-from storekit.models import InApp
-
 import pytest
+
+from storekit.models import InApp
 
 
 @pytest.mark.django_db

@@ -1,4 +1,5 @@
 from django.conf import settings
+
 from .appstore import AppStoreValidator
 
 

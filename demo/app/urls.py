@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import receive_normal_receipt, receive_subscribe_receipt
 
+from .views import receive_normal_receipt, receive_subscribe_receipt
 
 app_name = "app"
 

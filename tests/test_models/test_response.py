@@ -1,6 +1,6 @@
-from storekit.models import Response
-
 import pytest
+
+from storekit.models import Response
 
 
 @pytest.mark.django_db
