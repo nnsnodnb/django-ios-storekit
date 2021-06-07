@@ -21,7 +21,7 @@ def test_new_data_save_false(read_json, first_in_app):
 def test_str(read_json, first_in_app):
     response = Response.parser(read_json, in_app=first_in_app)
 
-    assert str(response) == 'Response: {}'.format(response.environment)
+    assert str(response) == "Response: {}".format(response.environment)
 
 
 @pytest.mark.django_db
