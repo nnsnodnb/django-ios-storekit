@@ -1,0 +1,52 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  tests:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python-version: ['3.5', '3.6', '3.7']
+      
+    name: Python ${{ matrix.python-version }} tests
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Python ${{ matrix.python-version }}
+      uses: actions/setup-python
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Get full python version
+      id: full-python-version
+      run: echo ::set-output name=version::$(python -c "import sys; print('-'.join(str(v) for v in sys.version_info))")
+
+    - name: Bootstrap environment
+      run: |
+        python -m ensurepip
+        python -m pip install -U pip
+        python -m venv venv
+
+    - name: Setup cache
+      uses: actions/cache/v2
+      id: cache
+      with:
+        path: venv
+        key: venv-${{ steps.full-python.outputs.version }}-${{ hashFiles('requirements.txt') }}
+
+    - name: Install dependencies
+      run: |
+        source venv/bin/activate
+        pip install -r requirements-test.txt
+    
+    - name: Run tests
+      run: |
+        source venv/bin/activate
+        tox -r
+
+    - name: Coveralls
+      run: |
+        source venv/bin/activate
+        coveralls
