@@ -27,28 +27,35 @@ jobs:
       run: |
         python -m ensurepip
         python -m pip install -U pip
-        python -m venv venv
+        python -m pip install poetry
+
+    - name: Configure poetry
+      run: |
+        python -m poetry config virtualenvs.in-project true
 
     - name: Setup cache
       uses: actions/cache@v2
       id: cache
       with:
-        path: venv
-        key: venv-${{ steps.full-python.outputs.version }}-${{ hashFiles('requirements.txt') }}
+        path: .venv
+        key: venv-${{ steps.full-python-version.outputs.version }}-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Ensure cache is healthy
+      if: steps.cache.outputs.cache-hit == 'true'
+      run: |
+        timeout 10s python -m poetry run pip --version || rm -rf .venv
 
     - name: Install dependencies
       run: |
-        source venv/bin/activate
-        pip install -r requirements-test.txt
+        python -m poetry install
     
     - name: Run tests
       env:
         DJANGO_SETTINGS_MODULE: tests.settings
       run: |
-        source venv/bin/activate
-        pytest tests/
+        python -m poetry run python -m pytest -v tests/
 
     - name: Coveralls
       run: |
-        source venv/bin/activate
-        coveralls
+        python -m poetry run coverage report
+        python -m poetry run coveralls
