@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.6', '3.7']
-      
+
     name: Python ${{ matrix.python-version }} tests
 
     steps:
@@ -47,8 +47,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m poetry install
-    
+        python -m poetry install --no-root
+
     - name: Run tests
       env:
         DJANGO_SETTINGS_MODULE: tests.settings
