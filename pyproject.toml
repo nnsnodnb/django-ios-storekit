@@ -1,0 +1,66 @@
+[tool.poetry]
+name = "django-ios-storekit"
+version = "1.0.6"
+description = "iOS In-App Purchase's receipt validation server plugin for Django"
+authors = ["Yuya Oka <nnsnodnb@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/nnsnodnb/django-ios-storekit"
+keywords = ["django", "ios", "in-app-purchases", "apple"]
+classifiers = [
+  "Environment :: Web Environment",
+  "Framework :: Django",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: Software Development :: Libraries :: Application Frameworks",
+  "Topic :: Software Development :: Libraries :: Python Modules"
+]
+packages = [
+    { include = "storekit" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+Django = "^2"
+requests = "^2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+pytest-django = "^4.4"
+pytest-cov = "^2.12"
+pytest-mock = "^3.6"
+requests-mock = "^1.9"
+coveralls = "^3.1.0"
+flake8 = "^3.9"
+black = "^20.0b1"
+isort = "^5.8.0"
+
+[tool.black]
+line-length = 120
+include = '\.pyi?$'
+exclude = '''
+(
+    /(
+         \.git
+        |\.github
+        |\.pytest_cache
+        |\.venv
+        |migrations
+    )/
+)
+'''
+
+[tool.isort]
+include_trailing_comma = true
+line_length = 120
+multi_line_output = 5
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

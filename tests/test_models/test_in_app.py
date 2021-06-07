@@ -1,6 +1,6 @@
-from storekit.models import InApp
-
 import pytest
+
+from storekit.models import InApp
 
 
 @pytest.mark.django_db
@@ -20,7 +20,7 @@ def test_new_data_save_false(first_in_app):
 def test_str(first_in_app):
     in_app = InApp.parser(first_in_app)
 
-    assert str(in_app) == '{}: {}'.format(in_app.product_id, in_app.quantity)
+    assert str(in_app) == "{}: {}".format(in_app.product_id, in_app.quantity)
 
 
 @pytest.mark.django_db

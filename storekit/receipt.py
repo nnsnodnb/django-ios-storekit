@@ -1,4 +1,5 @@
 from django.conf import settings
+
 from .appstore import AppStoreValidator
 
 
@@ -8,14 +9,9 @@ def normal_receipt(receipt, sandbox):
     except AttributeError:
         raise AttributeError('Please set "STOREKIT_APP_BUNDLE_ID" in your settings.py')
 
-    validator = AppStoreValidator(
-        bundle_id=storekit_bundle_id,
-        sandbox=sandbox
-    )
+    validator = AppStoreValidator(bundle_id=storekit_bundle_id, sandbox=sandbox)
 
-    return validator.validate(
-        receipt=receipt
-    )
+    return validator.validate(receipt=receipt)
 
 
 def subscribe_receipt(receipt, sandbox):
@@ -29,12 +25,6 @@ def subscribe_receipt(receipt, sandbox):
     except AttributeError:
         raise AttributeError('Please set "STOREKIT_PURCHASED_SECRET" in your settings.py')
 
-    validator = AppStoreValidator(
-        bundle_id=storekit_app_bundle_id,
-        sandbox=sandbox
-    )
+    validator = AppStoreValidator(bundle_id=storekit_app_bundle_id, sandbox=sandbox)
 
-    return validator.validate(
-        receipt=receipt,
-        password=storekit_purchased_secret
-    )
+    return validator.validate(receipt=receipt, password=storekit_purchased_secret)

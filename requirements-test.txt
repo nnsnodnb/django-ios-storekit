@@ -1,9 +1,0 @@
-tox
-mock
-dateutils
-coveralls
-pytest
-pytest-django
-pytest-cov
-pytest-mock
-requests-mock
