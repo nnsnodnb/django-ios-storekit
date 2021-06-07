@@ -56,20 +56,4 @@ jobs:
       run: |
         python -m poetry run python -m pytest -v tests
         python -m poetry run coverage report
-
-    - name: coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        parallel: true
-        flag-name: run-${{ matrix.python-version }}
-
-  finish:
-    needs: tests
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Coveralls Finished
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        parallel-finished: true
+        python -m poetry run coveralls
