@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-ios-storekit"
-version = "1.0.8"
+version = "1.0.9"
 description = "iOS In-App Purchase's receipt validation server plugin for Django"
 authors = ["Yuya Oka <nnsnodnb@gmail.com>"]
 license = "MIT"
