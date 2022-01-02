@@ -28,7 +28,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-Django = "^2"
+Django = ">=2,<4"
 requests = "^2"
 
 [tool.poetry.dev-dependencies]
