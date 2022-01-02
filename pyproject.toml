@@ -37,7 +37,7 @@ pytest-cov = "^2.12"
 pytest-mock = "^3.6"
 requests-mock = "^1.9"
 coveralls = "^3.1.0"
-flake8 = "^3.9"
+flake8 = "^4.0"
 black = "^20.0b1"
 isort = "^5.8.0"
 
