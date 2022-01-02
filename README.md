@@ -12,7 +12,7 @@ A Django plugin for iOS StoreKit server.
 
 ## Supported python versions
 
-3.6.x ~ 3.8.x
+3.6.x ~ 3.9.x
 
 ## Supported django versions
 
