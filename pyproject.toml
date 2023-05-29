@@ -38,7 +38,7 @@ pytest-mock = "^3.10"
 requests-mock = "^1.10"
 coveralls = "^3.3.1"
 flake8 = "^5.0"
-black = "^20.0b1"
+black = "^23.3"
 isort = "^5.8.0"
 
 [tool.black]
